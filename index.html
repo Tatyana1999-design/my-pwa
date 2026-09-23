@@ -123,9 +123,10 @@
     .card p {
       color: #94a3b8;
       font-size: 13px;
+      line-height: 1.5;
     }
 
-    /* Сетка игр (Кликабельные карточки) */
+    /* Сетка игр */
     .grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -142,7 +143,7 @@
       flex-direction: column;
       align-items: center;
       cursor: pointer;
-      transition: transform 0.1s, border-color 0.2s;
+      transition: transform 0.15s, border-color 0.2s;
     }
 
     .game-card:active {
@@ -151,14 +152,14 @@
     }
 
     .game-icon {
-      width: 48px;
-      height: 48px;
-      background: rgba(99, 102, 241, 0.1);
-      border-radius: 12px;
+      width: 52px;
+      height: 52px;
+      background: rgba(99, 102, 241, 0.12);
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
+      font-size: 28px;
       margin-bottom: 10px;
     }
 
@@ -175,20 +176,97 @@
       font-weight: 600;
     }
 
-    /* Кнопки вызова внутренней страницы */
+    /* Кнопки навигации и стрелки */
+    .nav-arrows-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
     .btn-back {
       background: rgba(255, 255, 255, 0.08);
       color: #cbd5e1;
       border: none;
-      padding: 10px 16px;
+      padding: 10px 14px;
       border-radius: 12px;
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
-      margin-bottom: 16px;
       display: inline-flex;
       align-items: center;
       gap: 6px;
+    }
+
+    .btn-arrow-switch {
+      background: rgba(168, 85, 247, 0.15);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Баннер детальной страницы */
+    .game-banner {
+      border-radius: 20px;
+      padding: 24px 16px;
+      text-align: center;
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .banner-icon {
+      font-size: 64px;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+    }
+
+    .banner-title {
+      color: #fff;
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .banner-subtitle {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* Галерея скриншотов */
+    .gallery-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #cbd5e1;
+      margin: 16px 0 10px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .gallery-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 12px 6px;
+      text-align: center;
+      font-size: 11px;
+      color: #94a3b8;
+      font-weight: 600;
     }
 
     .btn-play-game {
@@ -196,12 +274,16 @@
       color: #fff;
       border: none;
       padding: 14px;
-      border-radius: 12px;
+      border-radius: 14px;
       width: 100%;
       font-size: 15px;
-      font-weight: 700;
-      margin-top: 16px;
+      font-weight: 800;
       cursor: pointer;
+      box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
 
     /* Нижнее меню */
@@ -273,28 +355,28 @@
       </div>
     </section>
 
-    <!-- ЭКРАН 2: ИГРЫ (ОТКРЫВАЮТ ВНУТРЕННЮЮ СТРАНИЦУ) -->
+    <!-- ЭКРАН 2: ИГРЫ -->
     <section id="screen-games" class="screen">
       <div class="grid">
-        <div class="game-card" onclick="openGameDetail('Cyber Quest', '🎮')">
+        <div class="game-card" onclick="openGameDetailByIndex(0)">
           <div class="game-icon">🎮</div>
           <div class="game-title">Cyber Quest</div>
           <div class="game-tag">Открыть ➔</div>
         </div>
 
-        <div class="game-card" onclick="openGameDetail('Space Race', '🚀')">
+        <div class="game-card" onclick="openGameDetailByIndex(1)">
           <div class="game-icon">🚀</div>
           <div class="game-title">Space Race</div>
           <div class="game-tag">Открыть ➔</div>
         </div>
 
-        <div class="game-card" onclick="openGameDetail('Shadow Blade', '⚔️')">
+        <div class="game-card" onclick="openGameDetailByIndex(2)">
           <div class="game-icon">⚔️</div>
           <div class="game-title">Shadow Blade</div>
           <div class="game-tag">Открыть ➔</div>
         </div>
 
-        <div class="game-card" onclick="openGameDetail('Pixel Puzzle', '🧩')">
+        <div class="game-card" onclick="openGameDetailByIndex(3)">
           <div class="game-icon">🧩</div>
           <div class="game-title">Pixel Puzzle</div>
           <div class="game-tag">Открыть ➔</div>
@@ -302,18 +384,42 @@
       </div>
     </section>
 
-    <!-- ЭКРАН 5: ВНУТРЕННЯЯ СТРАНИЦА ИГРЫ (ЭКРАН ДЕТАЛЕЙ) -->
+    <!-- ЭКРАН 5: ДЕТАЛЬНЫЙ ПРОСМОТР ИГРЫ (С БАННЕРОМ, ОПИСАНИЕМ И СТРЕЛКАМИ) -->
     <section id="screen-game-detail" class="screen">
-      <button class="btn-back" onclick="switchScreen('games', 'Каталог игр', document.querySelectorAll('.nav-item')[1])">
-        ← Назад к играм
-      </button>
-      
-      <div class="card" style="text-align: center; padding: 24px 16px;">
-        <div id="detail-game-icon" style="font-size: 56px; margin-bottom: 12px;">🎮</div>
-        <h3 id="detail-game-title" style="color: #fff; font-size: 20px; margin-bottom: 6px;">Название игры</h3>
-        <p style="color: #94a3b8; font-size: 13px;">Внутренняя страница игры внутри PWA-приложения.</p>
-        <button class="btn-play-game" onclick="alert('Запуск игры внутри PWA!')">Запустить игру</button>
+      <!-- Навигационная панель со стрелками -->
+      <div class="nav-arrows-bar">
+        <button class="btn-back" onclick="switchScreen('games', 'Каталог игр', document.querySelectorAll('.nav-item')[1])">
+          ← Назад
+        </button>
+        <div style="display: flex; gap: 6px;">
+          <button class="btn-arrow-switch" onclick="prevGame()">‹ Пред</button>
+          <button class="btn-arrow-switch" onclick="nextGame()">След ›</button>
+        </div>
       </div>
+      
+      <!-- Баннер карточка игры -->
+      <div id="detail-banner" class="game-banner">
+        <div id="detail-game-icon" class="banner-icon">🎮</div>
+        <div id="detail-game-title" class="banner-title">Cyber Quest</div>
+        <div id="detail-game-genre" class="banner-subtitle">Экшен / RPG • 4.9 ★</div>
+      </div>
+
+      <!-- Карточка с описанием -->
+      <div class="card">
+        <h4>Описание игры</h4>
+        <p id="detail-game-description">Подробная информация загружается...</p>
+      </div>
+
+      <!-- Галерея предпросмотра -->
+      <div class="gallery-title">Превью и фичи ➔</div>
+      <div id="detail-gallery" class="gallery-grid">
+        <!-- Карточки наполняются динамически из JS -->
+      </div>
+
+      <!-- Кнопка действия со стрелкой -->
+      <button class="btn-play-game" onclick="alert('Запуск игры в режиме PWA!')">
+        Запустить игру ➔
+      </button>
     </section>
 
     <!-- ЭКРАН 3: ПРОФИЛЬ -->
@@ -361,6 +467,51 @@
   </nav>
 
   <script>
+    const gamesData = [
+      {
+        id: 0,
+        title: 'Cyber Quest',
+        icon: '🎮',
+        genre: 'Экшен / RPG',
+        rating: '4.9 ★',
+        bannerBg: 'linear-gradient(135deg, #4f46e5, #a855f7)',
+        description: 'Погрузитесь в футуристический мегаполис, управляя кибернетическим агентом. Исследуйте неоновые улицы, выполняйте сложнейшие хакерские миссии и сражайтесь с боссами корпораций.',
+        gallery: ['⚡ Кибер-импланты', '🏙️ Неоновый город', '🛡️ Защита данных']
+      },
+      {
+        id: 1,
+        title: 'Space Race',
+        icon: '🚀',
+        genre: 'Аркада / Симулятор',
+        rating: '4.8 ★',
+        bannerBg: 'linear-gradient(135deg, #1d4ed8, #06b6d4)',
+        description: 'Управляйте сверхзвуковым космическим кораблем в маневренных гонках сквозь астероидные поля и галактические гиперврата. Улучшайте двигатели и побеждайте в турнире.',
+        gallery: ['🌌 Гиперпрыжок', '🛸 Модернизация', '🏆 Турнирный зачет']
+      },
+      {
+        id: 2,
+        title: 'Shadow Blade',
+        icon: '⚔️',
+        genre: 'Стелс / Экшен',
+        rating: '4.7 ★',
+        bannerBg: 'linear-gradient(135deg, #b91c1c, #7e22ce)',
+        description: 'Пройдите путь мастера тени. Используйте ниндзюцу, комбинации ударов и тактический стелс, чтобы незаметно устранять цели и освобождать древние провинции.',
+        gallery: ['🗡️ Катана мастера', '🥷 Стелс-режим', '🔥 Комбо-удары']
+      },
+      {
+        id: 3,
+        title: 'Pixel Puzzle',
+        icon: '🧩',
+        genre: 'Головоломка / Стратегия',
+        rating: '4.9 ★',
+        bannerBg: 'linear-gradient(135deg, #047857, #10b981)',
+        description: 'Захватывающая головоломка с сотнями уникальных пиксельных уровней. Тренируйте логику, собирайте редкие элементы и открывайте секретные уровни.',
+        gallery: ['🧩 500+ уровней', '💡 Подсказки', '🌟 Награды']
+      }
+    ];
+
+    let currentGameIndex = 0;
+
     function switchScreen(screenId, title, element) {
       document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
       document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -370,10 +521,30 @@
       document.getElementById('header-title').innerText = title;
     }
 
-    function openGameDetail(gameTitle, gameIcon) {
-      document.getElementById('detail-game-title').innerText = gameTitle;
-      document.getElementById('detail-game-icon').innerText = gameIcon;
-      switchScreen('game-detail', gameTitle, null);
+    function openGameDetailByIndex(index) {
+      currentGameIndex = index;
+      const game = gamesData[index];
+
+      document.getElementById('detail-banner').style.background = game.bannerBg;
+      document.getElementById('detail-game-icon').innerText = game.icon;
+      document.getElementById('detail-game-title').innerText = game.title;
+      document.getElementById('detail-game-genre').innerText = `${game.genre} • ${game.rating}`;
+      document.getElementById('detail-game-description').innerText = game.description;
+
+      const galleryEl = document.getElementById('detail-gallery');
+      galleryEl.innerHTML = game.gallery.map(item => `<div class="gallery-card">${item}</div>`).join('');
+
+      switchScreen('game-detail', game.title, null);
+    }
+
+    function prevGame() {
+      const newIndex = (currentGameIndex - 1 + gamesData.length) % gamesData.length;
+      openGameDetailByIndex(newIndex);
+    }
+
+    function nextGame() {
+      const newIndex = (currentGameIndex + 1) % gamesData.length;
+      openGameDetailByIndex(newIndex);
     }
 
     if ('serviceWorker' in navigator) {
