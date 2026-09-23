@@ -92,8 +92,6 @@
       padding: 20px;
       margin-bottom: 16px;
       border: 1px solid rgba(168, 85, 247, 0.2);
-      position: relative;
-      overflow: hidden;
     }
 
     .hero-card h3 {
@@ -143,8 +141,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-decoration: none; /* Убираем подчеркивание ссылки */
-      color: inherit;
+      cursor: pointer;
       transition: transform 0.1s, border-color 0.2s;
     }
 
@@ -174,27 +171,37 @@
 
     .game-tag {
       font-size: 11px;
-      color: #10b981;
+      color: #a855f7;
       font-weight: 600;
     }
 
-    /* Профиль */
-    .profile-header {
-      text-align: center;
-      padding: 20px 0;
+    /* Кнопки вызова внутренней страницы */
+    .btn-back {
+      background: rgba(255, 255, 255, 0.08);
+      color: #cbd5e1;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .avatar {
-      width: 72px;
-      height: 72px;
+    .btn-play-game {
       background: linear-gradient(135deg, #a855f7, #6366f1);
-      border-radius: 50%;
-      margin: 0 auto 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 32px;
-      box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: 12px;
+      width: 100%;
+      font-size: 15px;
+      font-weight: 700;
+      margin-top: 16px;
+      cursor: pointer;
     }
 
     /* Нижнее меню */
@@ -266,43 +273,53 @@
       </div>
     </section>
 
-    <!-- ЭКРАН 2: ИГРЫ (КЛИКАБЕЛЬНЫЕ КАРТОЧКИ-ССЫЛКИ) -->
+    <!-- ЭКРАН 2: ИГРЫ (ОТКРЫВАЮТ ВНУТРЕННЮЮ СТРАНИЦУ) -->
     <section id="screen-games" class="screen">
       <div class="grid">
-        <!-- Ссылка 1 -->
-        <a href="https://google.com" target="_blank" class="game-card">
+        <div class="game-card" onclick="openGameDetail('Cyber Quest', '🎮')">
           <div class="game-icon">🎮</div>
           <div class="game-title">Cyber Quest</div>
-          <div class="game-tag">Играть ➔</div>
-        </a>
+          <div class="game-tag">Открыть ➔</div>
+        </div>
 
-        <!-- Ссылка 2 -->
-        <a href="https://google.com" target="_blank" class="game-card">
+        <div class="game-card" onclick="openGameDetail('Space Race', '🚀')">
           <div class="game-icon">🚀</div>
           <div class="game-title">Space Race</div>
-          <div class="game-tag">Играть ➔</div>
-        </a>
+          <div class="game-tag">Открыть ➔</div>
+        </div>
 
-        <!-- Ссылка 3 -->
-        <a href="https://google.com" target="_blank" class="game-card">
+        <div class="game-card" onclick="openGameDetail('Shadow Blade', '⚔️')">
           <div class="game-icon">⚔️</div>
           <div class="game-title">Shadow Blade</div>
-          <div class="game-tag">Играть ➔</div>
-        </a>
+          <div class="game-tag">Открыть ➔</div>
+        </div>
 
-        <!-- Ссылка 4 -->
-        <a href="https://google.com" target="_blank" class="game-card">
+        <div class="game-card" onclick="openGameDetail('Pixel Puzzle', '🧩')">
           <div class="game-icon">🧩</div>
           <div class="game-title">Pixel Puzzle</div>
-          <div class="game-tag">Играть ➔</div>
-        </a>
+          <div class="game-tag">Открыть ➔</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ЭКРАН 5: ВНУТРЕННЯЯ СТРАНИЦА ИГРЫ (ЭКРАН ДЕТАЛЕЙ) -->
+    <section id="screen-game-detail" class="screen">
+      <button class="btn-back" onclick="switchScreen('games', 'Каталог игр', document.querySelectorAll('.nav-item')[1])">
+        ← Назад к играм
+      </button>
+      
+      <div class="card" style="text-align: center; padding: 24px 16px;">
+        <div id="detail-game-icon" style="font-size: 56px; margin-bottom: 12px;">🎮</div>
+        <h3 id="detail-game-title" style="color: #fff; font-size: 20px; margin-bottom: 6px;">Название игры</h3>
+        <p style="color: #94a3b8; font-size: 13px;">Внутренняя страница игры внутри PWA-приложения.</p>
+        <button class="btn-play-game" onclick="alert('Запуск игры внутри PWA!')">Запустить игру</button>
       </div>
     </section>
 
     <!-- ЭКРАН 3: ПРОФИЛЬ -->
     <section id="screen-profile" class="screen">
-      <div class="card profile-header">
-        <div class="avatar">👑</div>
+      <div class="card" style="text-align: center; padding: 20px 0;">
+        <div style="width: 72px; height: 72px; background: linear-gradient(135deg, #a855f7, #6366f1); border-radius: 50%; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);">👑</div>
         <h3 style="color: #fff; font-size: 18px; margin-bottom: 4px;">Игрок #4829</h3>
         <p style="color: #a855f7; font-weight: 600;">Pro Gamer Status</p>
       </div>
@@ -323,7 +340,7 @@
     </section>
   </main>
 
-  <!-- НИЖНЯЯ НАВИГАЦИЯ (Переключает экраны) -->
+  <!-- НИЖНЯЯ НАВИГАЦИЯ -->
   <nav>
     <button class="nav-item active" onclick="switchScreen('home', 'Главная', this)">
       <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
@@ -349,8 +366,14 @@
       document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
 
       document.getElementById(`screen-${screenId}`).classList.add('active');
-      element.classList.add('active');
+      if (element) element.classList.add('active');
       document.getElementById('header-title').innerText = title;
+    }
+
+    function openGameDetail(gameTitle, gameIcon) {
+      document.getElementById('detail-game-title').innerText = gameTitle;
+      document.getElementById('detail-game-icon').innerText = gameIcon;
+      switchScreen('game-detail', gameTitle, null);
     }
 
     if ('serviceWorker' in navigator) {
