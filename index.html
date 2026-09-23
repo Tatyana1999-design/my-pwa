@@ -6,7 +6,7 @@
   <title>Nexus Game Hub</title>
   
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#6366f1">
+  <meta name="theme-color" content="#0f172a">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="icon" type="image/svg+xml" href="icon.svg">
@@ -21,7 +21,7 @@
     }
 
     body {
-      background-color: #0f172a;
+      background: #090d16;
       color: #f8fafc;
       display: flex;
       flex-direction: column;
@@ -29,90 +29,174 @@
       overflow: hidden;
     }
 
+    /* Шапка приложения */
     header {
-      background: #1e293b;
-      padding: 16px;
-      text-align: center;
-      font-size: 18px;
-      font-weight: 700;
-      border-bottom: 1px solid #334155;
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
       justify-content: space-between;
       align-items: center;
+      z-index: 10;
+    }
+
+    .brand-title {
+      font-size: 19px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #a855f7, #6366f1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 0.5px;
     }
 
     .install-btn {
-      background: #6366f1;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
       color: #fff;
       border: none;
-      padding: 8px 14px;
+      padding: 8px 16px;
       border-radius: 20px;
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
       display: none;
       cursor: pointer;
     }
 
+    /* Контейнер экранов */
     main {
       flex: 1;
       overflow-y: auto;
-      padding: 20px;
+      padding: 16px;
       position: relative;
     }
 
     .screen {
       display: none;
-      animation: fadeIn 0.2s ease-in-out;
+      animation: slideUp 0.25s ease-out;
     }
 
     .screen.active {
       display: block;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .card {
-      background: #1e293b;
-      border-radius: 16px;
-      padding: 16px;
+    /* Карточки и баннеры */
+    .hero-card {
+      background: linear-gradient(135deg, #1e1b4b, #311042);
+      border-radius: 20px;
+      padding: 20px;
       margin-bottom: 16px;
-      border: 1px solid #334155;
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      position: relative;
+      overflow: hidden;
     }
 
-    .card h3 {
+    .hero-card h3 {
+      font-size: 20px;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .hero-card p {
+      color: #cbd5e1;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .card {
+      background: #111827;
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .card h4 {
       color: #818cf8;
+      font-size: 15px;
       margin-bottom: 8px;
     }
 
     .card p {
       color: #94a3b8;
-      font-size: 14px;
-      line-height: 1.5;
+      font-size: 13px;
     }
 
+    /* Сетка игр */
     .grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
 
-    .game-item {
-      background: #334155;
-      padding: 20px;
-      border-radius: 12px;
+    .game-card {
+      background: #111827;
+      border-radius: 16px;
+      padding: 16px;
       text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .game-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(99, 102, 241, 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .game-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin-bottom: 4px;
+    }
+
+    .game-tag {
+      font-size: 11px;
+      color: #10b981;
       font-weight: 600;
     }
 
+    /* Профиль пользователя */
+    .profile-header {
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .avatar {
+      width: 72px;
+      height: 72px;
+      background: linear-gradient(135deg, #a855f7, #6366f1);
+      border-radius: 50%;
+      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+    }
+
+    /* Нижнее меню */
     nav {
-      background: #1e293b;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
       display: flex;
       justify-content: space-around;
-      padding: 12px 0;
-      border-top: 1px solid #334155;
+      padding: 10px 0 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .nav-item {
@@ -120,12 +204,13 @@
       flex-direction: column;
       align-items: center;
       color: #64748b;
-      text-decoration: none;
       font-size: 11px;
-      cursor: pointer;
+      font-weight: 600;
       border: none;
       background: none;
       width: 25%;
+      cursor: pointer;
+      transition: color 0.2s;
     }
 
     .nav-item svg {
@@ -136,67 +221,89 @@
     }
 
     .nav-item.active {
-      color: #818cf8;
+      color: #a855f7;
     }
 
     .badge {
       display: inline-block;
-      background: #10b981;
-      color: #fff;
-      padding: 4px 8px;
-      border-radius: 6px;
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 4px 10px;
+      border-radius: 12px;
       font-size: 11px;
-      margin-top: 8px;
+      font-weight: 700;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <span id="header-title">Главная</span>
+    <span class="brand-title" id="header-title">Главная</span>
     <button id="pwa-install-btn" class="install-btn">Установить</button>
   </header>
 
   <main>
+    <!-- ЭКРАН 1: ГЛАВНАЯ -->
     <section id="screen-home" class="screen active">
-      <div class="card">
-        <h3>Добро пожаловать в NexusHub</h3>
-        <p>Рабочее PWA-приложение. Работает полностью оффлайн и устанавливается на главный экран Android.</p>
-        <span class="badge">Версия 1.0.0</span>
+      <div class="hero-card">
+        <h3>Nexus Game Hub</h3>
+        <p>Ваша автономная игровая платформа. Работает без подключения к интернету и устанавливается на смартфон.</p>
+        <span class="badge">PWA Ready</span>
       </div>
       <div class="card">
-        <h3>Статус системы</h3>
+        <h4>Статус подключения</h4>
         <p id="pwa-status">Запущено в браузере</p>
       </div>
     </section>
 
+    <!-- ЭКРАН 2: ИГРЫ -->
     <section id="screen-games" class="screen">
       <div class="grid">
-        <div class="game-item">🎮 Cyber Quest</div>
-        <div class="game-item">🚀 Space Race</div>
-        <div class="game-item">⚔️ Shadow Blade</div>
-        <div class="game-item">🧩 Pixel Puzzle</div>
+        <div class="game-card">
+          <div class="game-icon">🎮</div>
+          <div class="game-title">Cyber Quest</div>
+          <div class="game-tag">4.9 ★</div>
+        </div>
+        <div class="game-card">
+          <div class="game-icon">🚀</div>
+          <div class="game-title">Space Race</div>
+          <div class="game-tag">4.8 ★</div>
+        </div>
+        <div class="game-card">
+          <div class="game-icon">⚔️</div>
+          <div class="game-title">Shadow Blade</div>
+          <div class="game-tag">4.7 ★</div>
+        </div>
+        <div class="game-card">
+          <div class="game-icon">🧩</div>
+          <div class="game-title">Pixel Puzzle</div>
+          <div class="game-tag">4.9 ★</div>
+        </div>
       </div>
     </section>
 
+    <!-- ЭКРАН 3: ПРОФИЛЬ -->
     <section id="screen-profile" class="screen">
-      <div class="card" style="text-align: center;">
-        <div style="width: 64px; height: 64px; background: #6366f1; border-radius: 50%; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; font-size: 24px;">👤</div>
-        <h3>Игрок #4829</h3>
-        <p>Уровень: 12 | Очки: 4,500</p>
+      <div class="card profile-header">
+        <div class="avatar">👑</div>
+        <h3 style="color: #fff; font-size: 18px; margin-bottom: 4px;">Игрок #4829</h3>
+        <p style="color: #a855f7; font-weight: 600;">Pro Gamer Status</p>
       </div>
       <div class="card">
-        <h3>Достижения</h3>
-        <p>🏆 Первое погружение</p>
-        <p>⚡ Быстрый старт</p>
+        <h4>Достижения</h4>
+        <p>🏆 Первое погружение — Разблокировано</p>
+        <p style="margin-top: 6px;">⚡ Быстрый старт — Разблокировано</p>
       </div>
     </section>
 
+    <!-- ЭКРАН 4: НАСТРОЙКИ -->
     <section id="screen-settings" class="screen">
       <div class="card">
-        <h3>Настройки приложения</h3>
-        <p style="margin-bottom: 12px;">Управление кэшем и PWA</p>
-        <button onclick="clearPwaCache()" style="background: #ef4444; color: #fff; border: none; padding: 10px 16px; border-radius: 8px; width: 100%; font-weight: 600; cursor: pointer;">Очистить кэш PWA</button>
+        <h4>Параметры PWA</h4>
+        <p style="margin-bottom: 14px;">Управление автономным ресурсом</p>
+        <button onclick="clearPwaCache()" style="background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); padding: 12px; border-radius: 12px; width: 100%; font-weight: 700; cursor: pointer;">Очистить кэш приложения</button>
       </div>
     </section>
   </main>
