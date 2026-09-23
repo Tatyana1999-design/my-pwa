@@ -6,7 +6,7 @@
   <title>Nexus Game Hub</title>
   
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#0f172a">
+  <meta name="theme-color" content="#090d16">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="icon" type="image/svg+xml" href="icon.svg">
@@ -29,11 +29,11 @@
       overflow: hidden;
     }
 
-    /* Шапка приложения */
+    /* Шапка сайта */
     header {
-      background: rgba(15, 23, 42, 0.9);
-      backdrop-filter: blur(10px);
-      padding: 16px 20px;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(12px);
+      padding: 14px 18px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
       justify-content: space-between;
@@ -42,7 +42,7 @@
     }
 
     .brand-title {
-      font-size: 19px;
+      font-size: 18px;
       font-weight: 800;
       background: linear-gradient(135deg, #a855f7, #6366f1);
       -webkit-background-clip: text;
@@ -54,16 +54,16 @@
       background: linear-gradient(135deg, #6366f1, #8b5cf6);
       color: #fff;
       border: none;
-      padding: 8px 16px;
+      padding: 8px 14px;
       border-radius: 20px;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
       display: none;
       cursor: pointer;
     }
 
-    /* Контейнер экранов */
+    /* Основная область */
     main {
       flex: 1;
       overflow-y: auto;
@@ -73,15 +73,15 @@
 
     .screen {
       display: none;
-      animation: slideUp 0.25s ease-out;
+      animation: fadeIn 0.25s ease-out;
     }
 
     .screen.active {
       display: block;
     }
 
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(10px); }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
@@ -91,7 +91,8 @@
       border-radius: 20px;
       padding: 20px;
       margin-bottom: 16px;
-      border: 1px solid rgba(168, 85, 247, 0.2);
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     }
 
     .hero-card h3 {
@@ -111,13 +112,16 @@
       border-radius: 16px;
       padding: 16px;
       margin-bottom: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .card h4 {
       color: #818cf8;
       font-size: 15px;
       margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .card p {
@@ -126,7 +130,33 @@
       line-height: 1.5;
     }
 
-    /* Сетка игр */
+    /* Сетка и категории */
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+    }
+
+    .filter-chip {
+      background: rgba(255, 255, 255, 0.06);
+      color: #94a3b8;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      cursor: pointer;
+    }
+
+    .filter-chip.active {
+      background: #6366f1;
+      color: #fff;
+      border-color: #818cf8;
+    }
+
     .grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -152,10 +182,10 @@
     }
 
     .game-icon {
-      width: 52px;
-      height: 52px;
+      width: 54px;
+      height: 54px;
       background: rgba(99, 102, 241, 0.12);
-      border-radius: 14px;
+      border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -176,21 +206,21 @@
       font-weight: 600;
     }
 
-    /* Кнопки навигации и стрелки */
+    /* Внутренний экран игры */
     .nav-arrows-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .btn-back {
       background: rgba(255, 255, 255, 0.08);
       color: #cbd5e1;
       border: none;
-      padding: 10px 14px;
+      padding: 8px 14px;
       border-radius: 12px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       cursor: pointer;
       display: inline-flex;
@@ -207,12 +237,8 @@
       font-size: 12px;
       font-weight: 700;
       cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
     }
 
-    /* Баннер детальной страницы */
     .game-banner {
       border-radius: 20px;
       padding: 24px 16px;
@@ -226,7 +252,7 @@
 
     .banner-icon {
       font-size: 64px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
     }
 
@@ -238,35 +264,86 @@
     }
 
     .banner-subtitle {
-      color: rgba(255, 255, 255, 0.85);
+      color: rgba(255, 255, 255, 0.9);
       font-size: 13px;
       font-weight: 600;
     }
 
-    /* Галерея скриншотов */
-    .gallery-title {
-      font-size: 14px;
-      font-weight: 700;
+    .stats-row {
+      display: flex;
+      justify-content: space-around;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 12px;
+      padding: 10px;
+      margin-top: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-val {
+      font-size: 13px;
+      font-weight: 800;
+      color: #38bdf8;
+    }
+
+    .stat-lbl {
+      font-size: 10px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin-top: 8px;
+    }
+
+    .feature-list li {
+      font-size: 12px;
       color: #cbd5e1;
-      margin: 16px 0 10px;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
-      margin-bottom: 16px;
+      margin-top: 10px;
     }
 
     .gallery-card {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 12px;
-      padding: 12px 6px;
+      padding: 10px 4px;
       text-align: center;
       font-size: 11px;
       color: #94a3b8;
       font-weight: 600;
+    }
+
+    .toggle-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+    }
+
+    .toggle-btn {
+      background: rgba(99, 102, 241, 0.2);
+      color: #818cf8;
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
     }
 
     .btn-play-game {
@@ -284,12 +361,29 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
+      margin-top: 14px;
+    }
+
+    /* Профиль */
+    .progress-bar-bg {
+      background: rgba(255, 255, 255, 0.08);
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .progress-bar-fill {
+      background: linear-gradient(90deg, #a855f7, #6366f1);
+      height: 100%;
+      width: 90%;
+      border-radius: 4px;
     }
 
     /* Нижнее меню */
     nav {
       background: rgba(15, 23, 42, 0.95);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
       display: flex;
       justify-content: space-around;
       padding: 10px 0 14px;
@@ -338,58 +432,92 @@
 
   <header>
     <span class="brand-title" id="header-title">Главная</span>
-    <button id="pwa-install-btn" class="install-btn">Установить</button>
+    <button id="pwa-install-btn" class="install-btn">Установить PWA</button>
   </header>
 
   <main>
     <!-- ЭКРАН 1: ГЛАВНАЯ -->
     <section id="screen-home" class="screen active">
       <div class="hero-card">
-        <h3>Nexus Game Hub</h3>
-        <p>Ваша автономная игровая платформа. Работает без подключения к интернету и устанавливается на смартфон.</p>
-        <span class="badge">PWA Ready</span>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="font-size: 11px; font-weight: 800; color: #a855f7; text-transform: uppercase; letter-spacing: 1px;">🔥 Игра дня</span>
+          <span style="font-size: 11px; color: #94a3b8;">Обновлено только что</span>
+        </div>
+        <h3>Cyber Quest 2099</h3>
+        <p>Готовы отправиться в неон-сити? Погрузитесь в захватывающее PWA-приключение прямо сейчас.</p>
+        <button onclick="openGameDetailByIndex(0)" style="margin-top: 12px; background: #6366f1; color: #fff; border: none; padding: 10px 16px; border-radius: 12px; font-weight: 700; font-size: 12px; cursor: pointer;">Быстрый старт ➔</button>
       </div>
+
       <div class="card">
-        <h4>Статус подключения</h4>
-        <p id="pwa-status">Запущено в браузере</p>
+        <h4>🎯 Ежедневные квесты</h4>
+        <div style="margin-top: 10px;">
+          <div style="display: flex; justify-content: space-between; font-size: 12px; color: #cbd5e1;">
+            <span>Сыграть 3 игры оффлайн</span>
+            <span>2 / 3</span>
+          </div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 66%;"></div></div>
+        </div>
+        <div style="margin-top: 12px;">
+          <div style="display: flex; justify-content: space-between; font-size: 12px; color: #cbd5e1;">
+            <span>Зайти в профиль</span>
+            <span>1 / 1 (Выполнено)</span>
+          </div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 100%; background: #10b981;"></div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h4>📊 Статистика PWA-системы</h4>
+        <p id="pwa-status">Статус: Запущено в браузере</p>
+        <div class="stats-row">
+          <div class="stat-item"><div class="stat-val">4</div><div class="stat-lbl">Доступно игр</div></div>
+          <div class="stat-item"><div class="stat-val">100%</div><div class="stat-lbl">Offline Ready</div></div>
+          <div class="stat-item"><div class="stat-val">v2.5</div><div class="stat-lbl">Версия сборки</div></div>
+        </div>
       </div>
     </section>
 
     <!-- ЭКРАН 2: ИГРЫ -->
     <section id="screen-games" class="screen">
+      <div class="filter-bar">
+        <div class="filter-chip active">Все игры</div>
+        <div class="filter-chip">Экшен</div>
+        <div class="filter-chip">Гонки</div>
+        <div class="filter-chip">Головоломки</div>
+      </div>
+
       <div class="grid">
         <div class="game-card" onclick="openGameDetailByIndex(0)">
           <div class="game-icon">🎮</div>
           <div class="game-title">Cyber Quest</div>
-          <div class="game-tag">Открыть ➔</div>
+          <div class="game-tag">Подробнее ➔</div>
         </div>
 
         <div class="game-card" onclick="openGameDetailByIndex(1)">
           <div class="game-icon">🚀</div>
           <div class="game-title">Space Race</div>
-          <div class="game-tag">Открыть ➔</div>
+          <div class="game-tag">Подробнее ➔</div>
         </div>
 
         <div class="game-card" onclick="openGameDetailByIndex(2)">
           <div class="game-icon">⚔️</div>
           <div class="game-title">Shadow Blade</div>
-          <div class="game-tag">Открыть ➔</div>
+          <div class="game-tag">Подробнее ➔</div>
         </div>
 
         <div class="game-card" onclick="openGameDetailByIndex(3)">
           <div class="game-icon">🧩</div>
           <div class="game-title">Pixel Puzzle</div>
-          <div class="game-tag">Открыть ➔</div>
+          <div class="game-tag">Подробнее ➔</div>
         </div>
       </div>
     </section>
 
-    <!-- ЭКРАН 5: ДЕТАЛЬНЫЙ ПРОСМОТР ИГРЫ (С БАННЕРОМ, ОПИСАНИЕМ И СТРЕЛКАМИ) -->
+    <!-- ЭКРАН 5: ДЕТАЛЬНАЯ СТРАНИЦА ИГРЫ (С ПОЛНЫМ НАПОЛНЕНИЕМ) -->
     <section id="screen-game-detail" class="screen">
-      <!-- Навигационная панель со стрелками -->
       <div class="nav-arrows-bar">
         <button class="btn-back" onclick="switchScreen('games', 'Каталог игр', document.querySelectorAll('.nav-item')[1])">
-          ← Назад
+          ← Назад в каталог
         </button>
         <div style="display: flex; gap: 6px;">
           <button class="btn-arrow-switch" onclick="prevGame()">‹ Пред</button>
@@ -397,51 +525,114 @@
         </div>
       </div>
       
-      <!-- Баннер карточка игры -->
+      <!-- Баннер игры -->
       <div id="detail-banner" class="game-banner">
         <div id="detail-game-icon" class="banner-icon">🎮</div>
         <div id="detail-game-title" class="banner-title">Cyber Quest</div>
         <div id="detail-game-genre" class="banner-subtitle">Экшен / RPG • 4.9 ★</div>
+        
+        <div class="stats-row" style="background: rgba(0, 0, 0, 0.3); border: none; margin-top: 14px;">
+          <div class="stat-item"><div id="stat-size" class="stat-val">1.2 MB</div><div class="stat-lbl" style="color: #cbd5e1;">Размер PWA</div></div>
+          <div class="stat-item"><div id="stat-downloads" class="stat-val">12K+</div><div class="stat-lbl" style="color: #cbd5e1;">Запусков</div></div>
+          <div class="stat-item"><div id="stat-age" class="stat-val">12+</div><div class="stat-lbl" style="color: #cbd5e1;">Возраст</div></div>
+        </div>
       </div>
 
-      <!-- Карточка с описанием -->
+      <!-- Полное описание -->
       <div class="card">
-        <h4>Описание игры</h4>
-        <p id="detail-game-description">Подробная информация загружается...</p>
+        <h4>📖 Об игре</h4>
+        <p id="detail-game-description">Загрузка информации...</p>
       </div>
 
-      <!-- Галерея предпросмотра -->
-      <div class="gallery-title">Превью и фичи ➔</div>
-      <div id="detail-gallery" class="gallery-grid">
-        <!-- Карточки наполняются динамически из JS -->
+      <!-- Ключевые особенности -->
+      <div class="card">
+        <h4>⚡ Ключевые особенности</h4>
+        <ul id="detail-features-list" class="feature-list">
+          <!-- Динамические пункты из JS -->
+        </ul>
       </div>
 
-      <!-- Кнопка действия со стрелкой -->
-      <button class="btn-play-game" onclick="alert('Запуск игры в режиме PWA!')">
-        Запустить игру ➔
+      <!-- Настройки игры -->
+      <div class="card">
+        <h4>⚙️ Опции сессии</h4>
+        <div class="toggle-box">
+          <span style="font-size: 12px; color: #cbd5e1;">Звук и эффекты</span>
+          <button id="sound-btn" class="toggle-btn" onclick="toggleSound()">ВКЛ</button>
+        </div>
+        <div class="toggle-box" style="border-top: 1px solid rgba(255,255,255,0.05);">
+          <span style="font-size: 12px; color: #cbd5e1;">В избранное</span>
+          <button id="fav-btn" class="toggle-btn" onclick="toggleFav()">❤️ Сохранить</button>
+        </div>
+      </div>
+
+      <!-- Галерея -->
+      <div class="card">
+        <h4>🖼️ Скриншоты и фичи</h4>
+        <div id="detail-gallery" class="gallery-grid"></div>
+      </div>
+
+      <!-- Отзывы -->
+      <div class="card">
+        <h4>💬 Отзывы игроков</h4>
+        <div style="font-size: 12px; color: #94a3b8; margin-top: 6px;">
+          <p><strong style="color: #a855f7;">Alex_Cyber:</strong> «Отличная игра, работает мгновенно даже оффлайн!» ★★★★★</p>
+          <p style="margin-top: 6px;"><strong style="color: #6366f1;"> Gamer_99:</strong> «Очень удобное PWA-приложение, жду новых уровней.» ★★★★★</p>
+        </div>
+      </div>
+
+      <!-- Главная кнопка действия -->
+      <button class="btn-play-game" onclick="alert('Запуск игровой сессии в режиме PWA!')">
+        Запустить в PWA ➔
       </button>
     </section>
 
     <!-- ЭКРАН 3: ПРОФИЛЬ -->
     <section id="screen-profile" class="screen">
-      <div class="card" style="text-align: center; padding: 20px 0;">
-        <div style="width: 72px; height: 72px; background: linear-gradient(135deg, #a855f7, #6366f1); border-radius: 50%; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);">👑</div>
-        <h3 style="color: #fff; font-size: 18px; margin-bottom: 4px;">Игрок #4829</h3>
-        <p style="color: #a855f7; font-weight: 600;">Pro Gamer Status</p>
+      <div class="card" style="text-align: center; padding: 22px 16px;">
+        <div style="width: 76px; height: 76px; background: linear-gradient(135deg, #a855f7, #6366f1); border-radius: 50%; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; font-size: 34px; box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); border: 2px solid #fff;">👑</div>
+        <h3 style="color: #fff; font-size: 18px;">Игрок #4829</h3>
+        <p style="color: #a855f7; font-weight: 700; font-size: 12px; margin-top: 2px;">Pro Gamer Status</p>
+        
+        <div style="margin-top: 16px; text-align: left;">
+          <div style="display: flex; justify-content: space-between; font-size: 12px; color: #cbd5e1; font-weight: 600;">
+            <span>Уровень 12</span>
+            <span>4,500 / 5,000 XP</span>
+          </div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+        </div>
       </div>
+
       <div class="card">
-        <h4>Достижения</h4>
-        <p>🏆 Первое погружение — Разблокировано</p>
-        <p style="margin-top: 6px;">⚡ Быстрый старт — Разблокировано</p>
+        <h4>🏆 Разблокированные достижения</h4>
+        <p>🥇 <strong>Первое погружение</strong> — Установил PWA-приложение на смартфон.</p>
+        <p style="margin-top: 8px;">⚡ <strong>Быстрый старт</strong> — Запустил 5 игр оффлайн.</p>
+        <p style="margin-top: 8px;">🔥 <strong>Мастер кэша</strong> — Успешно очистил память PWA.</p>
       </div>
     </section>
 
     <!-- ЭКРАН 4: НАСТРОЙКИ -->
     <section id="screen-settings" class="screen">
       <div class="card">
-        <h4>Параметры PWA</h4>
-        <p style="margin-bottom: 14px;">Управление автономным ресурсом</p>
+        <h4>🛠️ Управление PWA-приложением</h4>
+        <p style="margin-bottom: 12px;">Очистка кэша и обновление локальной копии приложения.</p>
         <button onclick="clearPwaCache()" style="background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); padding: 12px; border-radius: 12px; width: 100%; font-weight: 700; cursor: pointer;">Очистить кэш приложения</button>
+      </div>
+
+      <div class="card">
+        <h4>🎨 Параметры интерфейса</h4>
+        <div class="toggle-box">
+          <span style="font-size: 12px; color: #cbd5e1;">Плавные анимации</span>
+          <button class="toggle-btn">ВКЛ</button>
+        </div>
+        <div class="toggle-box" style="border-top: 1px solid rgba(255,255,255,0.05);">
+          <span style="font-size: 12px; color: #cbd5e1;">Уведомления квестов</span>
+          <button class="toggle-btn">ВКЛ</button>
+        </div>
+      </div>
+
+      <div class="card" style="text-align: center;">
+        <p style="font-size: 11px; color: #64748b;">Nexus Game Hub v2.5.0 (PWA Edition)</p>
+        <p style="font-size: 11px; color: #64748b; margin-top: 4px;">Разработано на GitHub Pages</p>
       </div>
     </section>
   </main>
@@ -475,18 +666,34 @@
         genre: 'Экшен / RPG',
         rating: '4.9 ★',
         bannerBg: 'linear-gradient(135deg, #4f46e5, #a855f7)',
-        description: 'Погрузитесь в футуристический мегаполис, управляя кибернетическим агентом. Исследуйте неоновые улицы, выполняйте сложнейшие хакерские миссии и сражайтесь с боссами корпораций.',
-        gallery: ['⚡ Кибер-импланты', '🏙️ Неоновый город', '🛡️ Защита данных']
+        size: '1.2 MB',
+        downloads: '15K+',
+        age: '12+',
+        description: 'Исследуйте неоновые улицы футуристического города, управляя кибернетическим агентом. Выполняйте хакерские миссии, прокачивайте импланты и защищайте свои данные от корпораций.',
+        features: [
+          '⚡ Атмосферный неоновый дизайн и синтвейв-саундтрек',
+          '🛡️ Оффлайн-сохранение всех достижений в PWA',
+          '⚔️ Динамичные сражения и прокачка навыков'
+        ],
+        gallery: ['⚡ Импланты', '🏙️ Неон-сити', '🛡️ Защита']
       },
       {
         id: 1,
         title: 'Space Race',
         icon: '🚀',
-        genre: 'Аркада / Симулятор',
+        genre: 'Аркада / Гонки',
         rating: '4.8 ★',
         bannerBg: 'linear-gradient(135deg, #1d4ed8, #06b6d4)',
-        description: 'Управляйте сверхзвуковым космическим кораблем в маневренных гонках сквозь астероидные поля и галактические гиперврата. Улучшайте двигатели и побеждайте в турнире.',
-        gallery: ['🌌 Гиперпрыжок', '🛸 Модернизация', '🏆 Турнирный зачет']
+        size: '0.9 MB',
+        downloads: '22K+',
+        age: '6+',
+        description: 'Пилотируйте сверхзвуковой космический корабль сквозь астероидные поля и галактические кольца. Улучшайте двигатели, ставьте рекорды скорости и побеждайте в турнирах.',
+        features: [
+          '🌌 12 уникальных космических трасс',
+          '🛸 Настройка и покраска вашего звездолета',
+          '🏆 Таблица лидеров и регулярные чемпионаты'
+        ],
+        gallery: ['🌌 Гиперпрыжок', '🛸 Гараж', '🏆 Турнир']
       },
       {
         id: 2,
@@ -495,8 +702,16 @@
         genre: 'Стелс / Экшен',
         rating: '4.7 ★',
         bannerBg: 'linear-gradient(135deg, #b91c1c, #7e22ce)',
-        description: 'Пройдите путь мастера тени. Используйте ниндзюцу, комбинации ударов и тактический стелс, чтобы незаметно устранять цели и освобождать древние провинции.',
-        gallery: ['🗡️ Катана мастера', '🥷 Стелс-режим', '🔥 Комбо-удары']
+        size: '1.5 MB',
+        downloads: '9K+',
+        age: '16+',
+        description: 'Пройдите путь мастера тени. Используйте боевые искусств, каганы и тактический стелс, чтобы незаметно устранять цели и освобождать древние провинции.',
+        features: [
+          '🗡️ Реалистичные комбинации ударов и паркур',
+          '🥷 Режим невидимости и бесшумных атак',
+          '🔥 Сражения с эпическими боссами'
+        ],
+        gallery: ['🗡️ Катана', '🥷 Стелс', '🔥 Боссы']
       },
       {
         id: 3,
@@ -505,12 +720,22 @@
         genre: 'Головоломка / Стратегия',
         rating: '4.9 ★',
         bannerBg: 'linear-gradient(135deg, #047857, #10b981)',
-        description: 'Захватывающая головоломка с сотнями уникальных пиксельных уровней. Тренируйте логику, собирайте редкие элементы и открывайте секретные уровни.',
+        size: '0.8 MB',
+        downloads: '30K+',
+        age: '3+',
+        description: 'Захватывающая логическая игра с сотнями пиксельных уровней. Тренируйте мышление, находите скрытые комбинации и открывайте секретные арт-паки.',
+        features: [
+          '🧩 Более 500 авторских головоломок',
+          '💡 Интерактивная система подсказок',
+          '🌟 Расслабляющий медитативный геймплей'
+        ],
         gallery: ['🧩 500+ уровней', '💡 Подсказки', '🌟 Награды']
       }
     ];
 
     let currentGameIndex = 0;
+    let isSoundOn = true;
+    let isFav = false;
 
     function switchScreen(screenId, title, element) {
       document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -531,6 +756,13 @@
       document.getElementById('detail-game-genre').innerText = `${game.genre} • ${game.rating}`;
       document.getElementById('detail-game-description').innerText = game.description;
 
+      document.getElementById('stat-size').innerText = game.size;
+      document.getElementById('stat-downloads').innerText = game.downloads;
+      document.getElementById('stat-age').innerText = game.age;
+
+      const featuresEl = document.getElementById('detail-features-list');
+      featuresEl.innerHTML = game.features.map(f => `<li>${f}</li>`).join('');
+
       const galleryEl = document.getElementById('detail-gallery');
       galleryEl.innerHTML = game.gallery.map(item => `<div class="gallery-card">${item}</div>`).join('');
 
@@ -545,6 +777,20 @@
     function nextGame() {
       const newIndex = (currentGameIndex + 1) % gamesData.length;
       openGameDetailByIndex(newIndex);
+    }
+
+    function toggleSound() {
+      isSoundOn = !isSoundOn;
+      const btn = document.getElementById('sound-btn');
+      btn.innerText = isSoundOn ? 'ВКЛ' : 'ВЫКЛ';
+      btn.style.background = isSoundOn ? 'rgba(99, 102, 241, 0.2)' : 'rgba(255, 255, 255, 0.1)';
+    }
+
+    function toggleFav() {
+      isFav = !isFav;
+      const btn = document.getElementById('fav-btn');
+      btn.innerText = isFav ? '❤️ Сохранено' : '🤍 В избранное';
+      btn.style.color = isFav ? '#ef4444' : '#818cf8';
     }
 
     if ('serviceWorker' in navigator) {
@@ -576,7 +822,7 @@
 
     window.addEventListener('DOMContentLoaded', () => {
       if (window.matchMedia('(display-mode: standalone)').matches) {
-        document.getElementById('pwa-status').innerText = 'Запущено как установленное PWA';
+        document.getElementById('pwa-status').innerText = 'Статус: Запущено как PWA';
         installBtn.style.display = 'none';
       }
     });
